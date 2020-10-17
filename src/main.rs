@@ -1,7 +1,7 @@
 use chrono::prelude::*;
+use std::fs::File;
 use std::io::Error;
 use std::io::Write;
-use std::fs::File;
 
 fn main() -> Result<(), Error> {
     let first_day = monday(Utc::today());
@@ -10,13 +10,13 @@ fn main() -> Result<(), Error> {
     let title = first_day.format("Week %d %b %Y");
 
     let mut file = File::create(format!("{}.md", title))?;
-    write!(&file, "# {}\n", title)?;
+    writeln!(&file, "# {}", title)?;
 
     for day in days {
         layout(&mut file, &day)?;
     }
 
-    Ok( () )
+    Ok(())
 }
 
 fn layout(file: &mut File, day: &Date<Utc>) -> Result<(), Error> {
@@ -34,7 +34,7 @@ fn monday(from: Date<Utc>) -> Date<Utc> {
 }
 
 fn week(from: Date<Utc>) -> Vec<Date<Utc>> {
-    let mut cursor = from.clone();
+    let mut cursor = from;
     let mut days = Vec::with_capacity(7);
 
     (1..=7).for_each(|_| {
