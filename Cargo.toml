@@ -1,8 +1,9 @@
 [package]
 name = "weekahead"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Richard Dallaway <richard@dallaway.com>"]
 edition = "2018"
 
 [dependencies]
 chrono = "0.4"
+structopt = "0.3"
