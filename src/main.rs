@@ -6,11 +6,12 @@ use std::io::Write;
 mod journal;
 use journal::Journal;
 
+use structopt::clap::AppSettings;
 use structopt::StructOpt;
 #[derive(StructOpt, Debug)]
+#[structopt(settings = &[AppSettings::AllowNegativeNumbers])]
 struct Options {
     /// How many weeks forward to skip.
-    /// Hint: to pass a negative number use the "-d=-1" format rather that the "-d -1" stype.
     #[structopt(short, long, default_value = "0")]
     skip: i8,
 
